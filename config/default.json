@@ -1,0 +1,13 @@
+{
+  "app": {
+    "logging": {
+      "index": "epi-data-entities",
+      "level": "debug"
+    },
+    "timezone": "Asia/Singapore"
+  },
+  "database": {
+    "db_name": "epixdb",
+    "dialect": "mariadb"
+  }
+}
