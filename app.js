@@ -7,16 +7,19 @@ const logger = require('./config/logger');
  * import the schema here
  */
 const Account = require('./src/models/users/account.schema');
+const UserInfo = require('./src/models/users/userinfo.schema');
 
 const DBConnection = async () => {
   try {
     DB.authenticate();
     logger.info(JSON.stringify({ msg: 'Database Connection Established...' }));
   } catch (error) {
-    logger.fatal(JSON.stringify({ error, msg: 'Unable to connect to the database' }));
+    logger.fatal(
+      JSON.stringify({ error, msg: 'Unable to connect to the database' })
+    );
   }
 };
 
 DBConnection();
 
-module.exports = { Sequelize, DB, Account };
+module.exports = { Sequelize, DB, Account, UserInfo };

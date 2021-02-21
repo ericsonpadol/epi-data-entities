@@ -5,7 +5,7 @@ const logger = require('../../../config/logger');
 
 const { Model, DataTypes } = Sequelize;
 
-class Account extends Model { }
+class Account extends Model {}
 
 Account.init(
   {
@@ -13,6 +13,11 @@ Account.init(
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4,
+    },
+    accountNumber: {
+      type: DataTypes.INTEGER(11).UNSIGNED,
+      unique: true,
+      allowNull: false,
     },
     branchAccessId: {
       type: DataTypes.UUID,
@@ -36,6 +41,12 @@ Account.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    status: {
+      type: DataTypes.INTEGER(11).UNSIGNED,
+      allowNull: false,
+      defaultValue: 1,
+      comment: '0 - Inactive, 1 - Active, 2 - Blocked',
+    },
   },
   {
     sequelize: DB,
@@ -47,10 +58,14 @@ Account.init(
     engine: 'INNODB',
     version: true,
     indexes: [
-      { name: 'IDX_COMPOSITE_ACCOUNT_BRANCH', fields: ['id', 'branchAccessId'] },
+      {
+        name: 'IDX_COMPOSITE_ACCOUNT_BRANCH',
+        fields: ['id', 'branchAccessId'],
+      },
       { name: 'IDX_COMPOSITE_ACCOUNT_TYPE', fields: ['id', 'accountTypeId'] },
       { name: 'IDX_FULL_USERNAME', fields: ['username'] },
       { name: 'IDX_FULL_EMAIL', fields: ['accountEmail'] },
+      { name: 'IDX_FULL_ACCOUNT_NUMBER', fields: ['accountNumber'] },
     ],
   }
 );
@@ -59,9 +74,15 @@ Account.init(
 const syncTable = async () => {
   try {
     await Account.sync({ alter: true });
-    logger.info(JSON.stringify({ msg: 'Account Table is updated successfully.' }));
+    logger.info(
+      JSON.stringify({ msg: 'Account Table is updated successfully.' })
+    );
   } catch (error) {
-    logger.error(JSON.stringify({ error: { name: error.name, msg: error.message, full: error } }));
+    logger.error(
+      JSON.stringify({
+        error: { name: error.name, msg: error.message, full: error },
+      })
+    );
   }
 };
 
