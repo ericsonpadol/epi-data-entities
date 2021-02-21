@@ -8,6 +8,7 @@ const logger = require('./config/logger');
  */
 const Account = require('./src/models/users/account.schema');
 const UserInfo = require('./src/models/users/userinfo.schema');
+const AccountType = require('./src/models/users/account-type.schema');
 
 const DBConnection = async () => {
   try {
@@ -22,4 +23,4 @@ const DBConnection = async () => {
 
 DBConnection();
 
-module.exports = { Sequelize, DB, Account, UserInfo };
+module.exports = { Sequelize, DB, Account, UserInfo, AccountType };

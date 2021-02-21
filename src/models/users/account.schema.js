@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 const DB = require('../../../config/sequelize');
-const logger = require('../../../config/logger');
+const { syncTable } = require('../../helpers/migration.helper');
 
 const { Model, DataTypes } = Sequelize;
 
@@ -47,6 +47,14 @@ Account.init(
       defaultValue: 1,
       comment: '0 - Inactive, 1 - Active, 2 - Blocked',
     },
+    createdBy: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+    modifiedBy: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
   },
   {
     sequelize: DB,
@@ -71,21 +79,6 @@ Account.init(
 );
 
 // alter the database, if there any changes in the schema
-const syncTable = async () => {
-  try {
-    await Account.sync({ alter: true });
-    logger.info(
-      JSON.stringify({ msg: 'Account Table is updated successfully.' })
-    );
-  } catch (error) {
-    logger.error(
-      JSON.stringify({
-        error: { name: error.name, msg: error.message, full: error },
-      })
-    );
-  }
-};
-
-syncTable();
+syncTable(Account, Account.name);
 
 module.exports = Account;
