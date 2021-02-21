@@ -2,18 +2,22 @@
 root = true
 
 [*]
-charset = utf-8
-end_of_line = lf
-indent_size = 2
 indent_style = space
-insert_final_newline = true
-max_line_length = 80
+indent_size = 2
+charset = utf-8
 trim_trailing_whitespace = true
-quote_type = single
+insert_final_newline = true
+end_of_line = lf
+
+# editorconfig-tools is unable to ignore longs strings or urls
+max_line_length = off
+
+[CHANGELOG.md]
+indent_size = false
 
 [*.md]
-max_line_length = 0
+max_line_length = off
 trim_trailing_whitespace = false
 
 [COMMIT_EDITMSG]
-max_line_length = 0
+max_line_length = off
