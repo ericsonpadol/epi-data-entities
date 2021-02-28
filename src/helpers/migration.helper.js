@@ -7,9 +7,14 @@ const syncTable = async (Table, tableName) => {
       JSON.stringify({ msg: `${tableName} is synced/altered successfully.` })
     );
   } catch (error) {
-    logger.error(
+    logger.fatal(
       JSON.stringify({
-        error: { name: error.name, msg: error.message, full: error },
+        error: {
+          name: error.name,
+          msg: error.message,
+          line: error.line,
+          stack: error.stack,
+        },
       })
     );
   }

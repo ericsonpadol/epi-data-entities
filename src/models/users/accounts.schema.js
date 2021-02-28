@@ -5,9 +5,9 @@ const { syncTable } = require('../../helpers/migration.helper');
 
 const { Model, DataTypes } = Sequelize;
 
-class Account extends Model {}
+class Accounts extends Model {}
 
-Account.init(
+Accounts.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -58,8 +58,8 @@ Account.init(
   },
   {
     sequelize: DB,
-    modelName: 'Account',
-    tableName: 'Account',
+    modelName: 'Accounts',
+    tableName: 'Accounts',
     freezeTableName: true,
     paranoid: true,
     timestamps: true,
@@ -79,6 +79,6 @@ Account.init(
 );
 
 // alter the database, if there any changes in the schema
-syncTable(Account, Account.name);
+syncTable(Accounts, Accounts.name);
 
-module.exports = Account;
+module.exports = Accounts;

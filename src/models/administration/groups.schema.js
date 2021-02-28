@@ -3,23 +3,23 @@ const Sequelize = require('sequelize');
 const DB = require('../../../config/sequelize');
 const { syncTable } = require('../../helpers/migration.helper');
 
-const { DataTypes, Model } = Sequelize;
+const { Model, DataTypes } = Sequelize;
 
-class AccountType extends Model {}
+class Groups extends Model {}
 
-AccountType.init(
+Groups.init(
   {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4,
     },
-    typeName: {
+    name: {
       type: DataTypes.STRING,
-      allowNull: false,
       unique: true,
+      allowNull: false,
     },
-    typeDesc: {
+    description: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
@@ -34,17 +34,22 @@ AccountType.init(
   },
   {
     sequelize: DB,
-    modelName: 'AccountType',
-    tableName: 'AccountType',
-    freezeTableName: true,
-    paranoid: true,
     timestamps: true,
-    engine: 'INNODB',
+    paranoid: true,
     version: true,
-    indexes: [{ name: 'IDX_FULL_USERTYPE', fields: ['typeName'] }],
+    modelName: 'Groups',
+    tableName: 'Groups',
+    engine: 'INNODB',
+    indexes: [
+      { name: 'IDX_COMPOSITE_GROUP', fields: ['id', 'name'] },
+      {
+        name: 'IDX_COMPOSITE_CREATED_MODIFIED',
+        fields: ['id', 'createdBy', 'modifiedBy'],
+      },
+    ],
   }
 );
 
-syncTable(AccountType, AccountType.name);
+syncTable(Groups, Groups.name);
 
-module.exports = AccountType;
+module.exports = Groups;
