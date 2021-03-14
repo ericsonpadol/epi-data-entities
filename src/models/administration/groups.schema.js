@@ -13,23 +13,28 @@ Groups.init(
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4,
+      field: 'id',
     },
     name: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
+      field: 'name',
     },
-    description: {
+    desc: {
       type: DataTypes.TEXT,
       allowNull: true,
+      field: 'desc',
     },
     createdBy: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: 'created_by',
     },
     modifiedBy: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: 'modified_by',
     },
   },
   {
@@ -38,18 +43,16 @@ Groups.init(
     paranoid: true,
     version: true,
     modelName: 'Groups',
-    tableName: 'Groups',
-    engine: 'INNODB',
-    indexes: [
-      { name: 'IDX_COMPOSITE_GROUP', fields: ['id', 'name'] },
-      {
-        name: 'IDX_COMPOSITE_CREATED_MODIFIED',
-        fields: ['id', 'createdBy', 'modifiedBy'],
-      },
-    ],
+    tableName: 'GROUPS',
+    engine: 'MYISAM',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
+    underscored: true,
+    indexes: [{ name: 'IDX_COMPOSITE_GROUP', fields: ['name'] }],
   }
 );
 
-syncTable(Groups, Groups.name);
+syncTable(Groups);
 
 module.exports = Groups;

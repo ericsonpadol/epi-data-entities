@@ -31,7 +31,7 @@
   },
   "scripts": {
     "test": "jest --passWithNoTests .",
-    "lint": "eslint --fix .",
+    "lint": "eslint --fix --max-warnings=30 .",
     "start:dev": "npm run lint && npm run test && nodemon app"
   },
   "repository": {

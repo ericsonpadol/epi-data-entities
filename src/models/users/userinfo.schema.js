@@ -13,61 +13,72 @@ UserInfo.init(
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4,
+      field: 'id',
     },
-    accountId: {
+    userId: {
       type: DataTypes.UUID,
       unique: true,
       allowNull: false,
+      field: 'user_id',
     },
     givenName: {
       type: DataTypes.STRING,
       allowNull: false,
+      field: 'given_name',
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
+      field: 'last_name',
     },
     mobileNumber: {
       type: DataTypes.INTEGER(11).UNSIGNED,
       allowNull: false,
       unique: true,
+      field: 'mobile_number',
     },
     avatar: {
       type: DataTypes.TEXT,
       allowNull: true,
-    },
-    pin: {
-      type: DataTypes.TINYINT(5),
-      allowNull: true,
-      comment: 'dunno what is this for',
+      field: 'avatar',
     },
     createdBy: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: 'created_by',
     },
     modifiedBy: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: 'modified_by',
+    },
+    department: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      field: 'department',
     },
   },
   {
     sequelize: DB,
+    underscored: true,
     modelName: 'UserInfo',
-    tableName: 'UserInfo',
-    freezeTableName: true,
+    tableName: 'USER_INFO',
     paranoid: true,
     timestamps: true,
-    engine: 'INNODB',
+    engine: 'MYISAM',
     version: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
     indexes: [
-      { name: 'IDX_COMPOSITE_USER_ACCOUNT', fields: ['id', 'accountId'] },
-      { name: 'IDX_FULL_GIVEN_NAME', fields: ['givenName'] },
-      { name: 'IDX_FULL_LAST_NAME', fields: ['lastName'] },
-      { name: 'IDX_FULL_MOBILE_NUMBER', fields: ['mobileNumber'] },
+      { name: 'IDX_COMPOSITE_USER_ACCOUNT', fields: ['id', 'user_id'] },
+      { name: 'IDX_FULL_GIVEN_NAME', fields: ['given_name'] },
+      { name: 'IDX_FULL_LAST_NAME', fields: ['last_name'] },
+      { name: 'IDX_FULL_MOBILE_NUMBER', fields: ['mobile_number'] },
     ],
   }
 );
 
-syncTable(UserInfo, UserInfo.name);
+syncTable(UserInfo);
 
 module.exports = UserInfo;

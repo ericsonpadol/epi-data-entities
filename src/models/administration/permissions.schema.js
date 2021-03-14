@@ -20,38 +20,37 @@ Permissions.init(
       unique: true,
       allowNull: false,
     },
-    description: {
+    desc: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
     createdBy: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: 'creadted_by',
     },
     modifiedBy: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: 'modified_by',
     },
   },
   {
     sequelize: DB,
     modelName: 'Permissions',
-    tableName: 'Permissions',
+    tableName: 'PERMISSIONS',
     paranoid: true,
     version: true,
     timestamps: true,
-    engine: 'INNODB',
-    indexes: [
-      { name: 'IDX_COMPOSITE_PERMISSION', fields: ['id', 'name'] },
-      { name: 'IDX_FULL_PERMISSION_NAME', fields: ['name'] },
-      {
-        name: 'IDX_COMPOSITE_CREATED_MODIFIED_BY',
-        fields: ['createdBy', 'modifiedBy'],
-      },
-    ],
+    engine: 'MYISAM',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
+    underscored: true,
+    indexes: [{ name: 'IDX_FULL_PERMISSION_NAME', fields: ['name'] }],
   }
 );
 
-syncTable(Permissions, Permissions.name);
+syncTable(Permissions);
 
 module.exports = Permissions;

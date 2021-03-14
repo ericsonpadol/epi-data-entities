@@ -19,32 +19,37 @@ Roles.init(
       allowNull: false,
       unique: true,
     },
-    description: {
+    desc: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
     createdBy: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: 'created_by',
     },
     modifiedBy: {
       type: DataTypes.UUID,
       allowNull: false,
+      field: 'modified_by',
     },
   },
   {
     sequelize: DB,
     modelName: 'Roles',
-    tableName: 'Roles',
-    freezeTableName: true,
+    tableName: 'ROLES',
     paranoid: true,
     timestamps: true,
-    engine: 'INNODB',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
+    engine: 'MYISAM',
     version: true,
-    indexes: [{ name: 'IDX_COMPOSITE_ROLE', fields: ['id', 'name'] }],
+    underscored: true,
+    indexes: [{ name: 'IDX_COMPOSITE_ROLE', fields: ['name'] }],
   }
 );
 
-syncTable(Roles, Roles.name);
+syncTable(Roles);
 
 module.exports = Roles;

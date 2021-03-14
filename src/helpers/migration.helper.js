@@ -1,10 +1,10 @@
 const logger = require('../../config/logger');
 
-const syncTable = async (Table, tableName) => {
+const syncTable = async (Table) => {
   try {
     await Table.sync({ alter: true });
     logger.info(
-      JSON.stringify({ msg: `${tableName} is synced/altered successfully.` })
+      JSON.stringify({ msg: `${Table.name} is synced/altered successfully.` })
     );
   } catch (error) {
     logger.fatal(
