@@ -1,6 +1,6 @@
 {
   "name": "epi-data-entities",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ExpressPay Inc. Schema",
   "main": "app.js",
   "dependencies": {
