@@ -11,6 +11,7 @@ Branches.init(
   {
     id: {
       type: DataTypes.UUID,
+      defaultValue: Sequelize.UUIDV4,
       primaryKey: true,
       allowNull: false,
       field: 'id',
@@ -26,6 +27,7 @@ Branches.init(
       type: DataTypes.STRING(100),
       allowNull: false,
       field: 'name',
+      unique: true,
     },
     address: {
       type: DataTypes.TEXT,

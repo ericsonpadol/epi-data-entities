@@ -20,6 +20,7 @@ const RefBgry = require('./src/models/commons/refbrgy.schema');
 const RefCitymun = require('./src/models/commons/refcitymun.schema');
 const RefProvince = require('./src/models/commons/refprovince.schema');
 const RefRegion = require('./src/models/commons/refregion.schema');
+const RefUserBranchAccess = require('./src/models/references/refuserbranchaccess.schema');
 
 const DBConnection = () => {
   try {
@@ -54,4 +55,5 @@ module.exports = {
   RefCitymun,
   RefBgry,
   RefProvince,
+  RefUserBranchAccess,
 };

@@ -14,8 +14,9 @@ Users.init(
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4,
       field: 'id',
+      comment: 'object id',
     },
-    account_id: {
+    accountId: {
       type: DataTypes.INTEGER(11).UNSIGNED,
       unique: true,
       allowNull: false,
