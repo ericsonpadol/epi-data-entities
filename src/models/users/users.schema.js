@@ -80,9 +80,8 @@ Users.init(
         fields: ['id', 'branch_id'],
       },
       { name: 'IDX_COMPOSITE_ACCOUNT_TYPE', fields: ['id', 'user_type_id'] },
-      { name: 'IDX_FULL_USERNAME', fields: ['username'] },
       { name: 'IDX_FULL_EMAIL', fields: ['email'] },
-      { name: 'IDX_FULL_ACCOUNT_ID', fields: ['account_id'] },
+      { name: 'IDX_FULL_ACCOUNT_ID', fields: ['id'] },
     ],
   }
 );
