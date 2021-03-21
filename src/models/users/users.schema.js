@@ -55,7 +55,7 @@ Users.init(
       field: 'modified_by',
     },
     pin: {
-      type: DataTypes.TINYINT(4),
+      type: DataTypes.INTEGER(6),
       allowNull: true,
       field: 'pin',
       comment:
