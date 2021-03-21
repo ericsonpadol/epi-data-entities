@@ -15,6 +15,5 @@ describe('Test User Model', () => {
   it('should have correct model name', () => {
     expect(Model).toHaveProperty('id');
     expect(Model).toHaveProperty('branchId');
-    expect(Model).toHaveProperty('accountId');
   });
 });

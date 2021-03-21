@@ -16,12 +16,6 @@ Users.init(
       field: 'id',
       comment: 'object id',
     },
-    accountId: {
-      type: DataTypes.INTEGER(11).UNSIGNED,
-      unique: true,
-      allowNull: false,
-      field: 'account_id',
-    },
     branchId: {
       type: DataTypes.UUID,
       allowNull: false,
@@ -37,12 +31,6 @@ Users.init(
       unique: true,
       allowNull: false,
       field: 'email',
-    },
-    username: {
-      type: DataTypes.STRING,
-      unique: true,
-      allowNull: false,
-      field: 'username',
     },
     password: {
       type: DataTypes.STRING,
