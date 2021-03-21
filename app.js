@@ -6,7 +6,7 @@ const logger = require('./config/logger');
 /**
  * import the schema here
  */
-const Accounts = require('./src/models/users/users.schema');
+const Users = require('./src/models/users/users.schema');
 const UserInfo = require('./src/models/users/userinfo.schema');
 const Roles = require('./src/models/administration/roles.schema');
 const Permissions = require('./src/models/administration/permissions.schema');
@@ -45,7 +45,7 @@ DBConnection();
 module.exports = {
   Sequelize,
   DB,
-  Accounts,
+  Users,
   UserInfo,
   Roles,
   Permissions,
