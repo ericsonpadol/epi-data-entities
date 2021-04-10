@@ -20,6 +20,7 @@ UserInfo.init(
       unique: true,
       allowNull: false,
       field: 'user_id',
+      comment: 'user object id',
     },
     givenName: {
       type: DataTypes.STRING,
@@ -71,7 +72,7 @@ UserInfo.init(
     updatedAt: 'updated_at',
     deletedAt: 'deleted_at',
     indexes: [
-      { name: 'IDX_COMPOSITE_USER_ACCOUNT', fields: ['id', 'user_id'] },
+      { name: 'IDX_COMPOSITE_USER_ACCOUNT', fields: ['user_id'] },
       { name: 'IDX_FULL_GIVEN_NAME', fields: ['given_name'] },
       { name: 'IDX_FULL_LAST_NAME', fields: ['last_name'] },
       { name: 'IDX_FULL_MOBILE_NUMBER', fields: ['mobile_number'] },

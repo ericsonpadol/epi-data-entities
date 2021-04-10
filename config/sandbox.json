@@ -1,1 +1,12 @@
-{}
+{
+    "database": {
+      "host": "localhost",
+      "username": "root",
+      "secret": "admin"
+    },
+    "app": {
+      "logging": {
+        "level": "debug"
+      }
+    }
+  }
